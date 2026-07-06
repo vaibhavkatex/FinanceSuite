@@ -1,0 +1,9 @@
+import{C as P}from"./auto.sRkgK8jz.js";const E=document.getElementById("loanAmountText"),S=document.getElementById("loanAmountSlider"),T=document.getElementById("interestRateText"),L=document.getElementById("interestRateSlider"),b=document.getElementById("tenureText"),R=document.getElementById("tenureSlider"),B=document.getElementById("emiValue"),C=document.getElementById("totalInterestValue"),v=document.getElementById("totalPaymentValue"),x=document.getElementById("amortizationTableBody");let p=null;function I(t,n){t.addEventListener("input",()=>{n.value=t.value,f()}),n.addEventListener("input",()=>{t.value=n.value,f()})}I(E,S);I(T,L);I(b,R);function a(t){return"₹"+Math.round(t).toLocaleString("en-IN")}function f(){const t=parseFloat(E.value)||0,n=parseFloat(T.value)||0,r=parseFloat(b.value)||0,d=n/12/100,o=r*12;let c=0;t>0&&n>0&&o>0&&(c=t*d*Math.pow(1+d,o)/(Math.pow(1+d,o)-1)),B&&(B.textContent=a(c));let l=t,g=0;const h=[];let u=0,s=0;for(let e=1;e<=o;e++){const y=l*d;let i=c-y;i>l&&(i=l),l-=i,g+=y,u+=i,s+=y,(e%12===0||e===o)&&(h.push({year:Math.ceil(e/12),principal:u,interest:s,balance:Math.max(0,l)}),u=0,s=0)}const m=g,M=t+m;C&&(C.textContent=a(m)),v&&(v.textContent=a(M)),x&&(x.innerHTML=h.map(e=>`
+        <tr>
+          <td>Year ${e.year}</td>
+          <td>${a(e.principal)}</td>
+          <td>${a(e.interest)}</td>
+          <td>${a(e.principal+e.interest)}</td>
+          <td>${a(e.balance)}</td>
+        </tr>
+      `).join("")),V(t,m)}function V(t,n){const r=document.getElementById("emiChart");r&&(p&&p.destroy(),p=new P(r,{type:"doughnut",data:{labels:["Principal Amount","Total Interest"],datasets:[{data:[t,n],backgroundColor:["#171717","#0070f3"],borderWidth:1,borderColor:"#ffffff"}]},options:{responsive:!0,plugins:{legend:{display:!1}},cutout:"75%"}}))}document.addEventListener("DOMContentLoaded",()=>{f()});
