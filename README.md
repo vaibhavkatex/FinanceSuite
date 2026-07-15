@@ -1,4 +1,4 @@
-# FinanceSuite - Premium EMI & Investment Calculator Suite
+# I build a Micro Saas FinanceSuite - Premium EMI & Investment Calculator Suite
 
 Free, professional-grade financial calculators. Calculate Home Loan EMI, SIP, FD, PPF, Sukanya Samriddhi (SSY), NPS, and read expert investment guides.
 
